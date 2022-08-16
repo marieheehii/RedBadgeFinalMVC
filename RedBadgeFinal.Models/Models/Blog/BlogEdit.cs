@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RedBadgeFinal.Models.Models.Blog
 {
-    internal class BlogEdit
+    public class BlogEdit
     {
     }
 }

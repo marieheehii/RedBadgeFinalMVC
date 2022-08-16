@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RedBadgeFinal.Models.Models.EventEntity
 {
-    internal class EventListItem
+    public class EventListItem
     {
     }
 }

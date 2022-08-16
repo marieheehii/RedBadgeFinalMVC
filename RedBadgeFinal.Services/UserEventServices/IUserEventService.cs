@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedBadgeFinal.Models.Models.Blog
+namespace RedBadgeFinal.Services.UserEventServices
 {
-    public class BlogListItem
+    internal interface IUserEventService
     {
     }
 }

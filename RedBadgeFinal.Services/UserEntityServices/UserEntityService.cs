@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedBadgeFinal.Models.Models.Blog
+namespace RedBadgeFinal.Services.UserEntityServices
 {
-    public class BlogListItem
+    internal class UserEntityService
     {
     }
 }
