@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RedBadgeFinal.Models;
+using RedBadgeFinal.Models.Models;
 using System.Diagnostics;
 
 namespace RedBadgeFinal.MVC.Controllers

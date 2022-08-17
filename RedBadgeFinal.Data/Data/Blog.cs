@@ -12,9 +12,9 @@ namespace RedBadgeFinal.Data.Data
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public string UserEntityId { get; set; }
+        public int UserEntityId { get; set; }
         [ForeignKey (nameof(UserEntityId))]
         public UserEntity UserEntity { get; set; }
-        public List<EventEntity> eventEntities { get; set; }
+        public List<EventEntity> eventEntities { get; set; } = new List<EventEntity>();
     }
 }

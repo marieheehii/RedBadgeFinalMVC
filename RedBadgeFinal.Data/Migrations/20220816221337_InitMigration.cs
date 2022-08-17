@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RedBadgeFinal.Data.Migrations
 {
     public partial class InitMigration : Migration
+
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,7 +29,6 @@ namespace RedBadgeFinal.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -50,18 +50,18 @@ namespace RedBadgeFinal.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Events",
+                name: "UserEntity",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Participants = table.Column<int>(type: "int", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Events", x => x.Id);
+                    table.PrimaryKey("PK_UserEntity", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -178,16 +178,40 @@ namespace RedBadgeFinal.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserEntityId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UserEntityId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Blogs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Blogs_AspNetUsers_UserEntityId",
+                        name: "FK_Blogs_UserEntity_UserEntityId",
                         column: x => x.UserEntityId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalTable: "UserEntity",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Events",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Participants = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Likes = table.Column<int>(type: "int", nullable: false),
+                    BlogId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Events", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Events_Blogs_BlogId",
+                        column: x => x.BlogId,
+                        principalTable: "Blogs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -196,21 +220,22 @@ namespace RedBadgeFinal.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserEntityId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    UserEntityId = table.Column<int>(type: "int", nullable: false),
                     EventEntityId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ScheduledEvents", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ScheduledEvents_AspNetUsers_UserEntityId",
-                        column: x => x.UserEntityId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
-                    table.ForeignKey(
                         name: "FK_ScheduledEvents_Events_EventEntityId",
                         column: x => x.EventEntityId,
                         principalTable: "Events",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ScheduledEvents_UserEntity_UserEntityId",
+                        column: x => x.UserEntityId,
+                        principalTable: "UserEntity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -260,6 +285,11 @@ namespace RedBadgeFinal.Data.Migrations
                 column: "UserEntityId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Events_BlogId",
+                table: "Events",
+                column: "BlogId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ScheduledEvents_EventEntityId",
                 table: "ScheduledEvents",
                 column: "EventEntityId");
@@ -288,9 +318,6 @@ namespace RedBadgeFinal.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Blogs");
-
-            migrationBuilder.DropTable(
                 name: "ScheduledEvents");
 
             migrationBuilder.DropTable(
@@ -301,6 +328,12 @@ namespace RedBadgeFinal.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Events");
+
+            migrationBuilder.DropTable(
+                name: "Blogs");
+
+            migrationBuilder.DropTable(
+                name: "UserEntity");
         }
     }
 }

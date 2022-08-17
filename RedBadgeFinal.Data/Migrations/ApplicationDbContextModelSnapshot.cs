@@ -86,10 +86,6 @@ namespace RedBadgeFinal.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -141,8 +137,6 @@ namespace RedBadgeFinal.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -244,8 +238,8 @@ namespace RedBadgeFinal.Data.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserEntityId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserEntityId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -265,8 +259,8 @@ namespace RedBadgeFinal.Data.Migrations
                     b.Property<int>("EventEntityId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserEntityId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserEntityId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -285,8 +279,14 @@ namespace RedBadgeFinal.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("BlogId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Likes")
+                        .HasColumnType("int");
 
                     b.Property<int>("Participants")
                         .HasColumnType("int");
@@ -296,14 +296,31 @@ namespace RedBadgeFinal.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BlogId");
+
                     b.ToTable("Events");
                 });
 
             modelBuilder.Entity("RedBadgeFinal.Data.Data.UserEntity", b =>
                 {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.HasDiscriminator().HasValue("UserEntity");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserEntity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -361,7 +378,9 @@ namespace RedBadgeFinal.Data.Migrations
                 {
                     b.HasOne("RedBadgeFinal.Data.Data.UserEntity", "UserEntity")
                         .WithMany("Blogs")
-                        .HasForeignKey("UserEntityId");
+                        .HasForeignKey("UserEntityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("UserEntity");
                 });
@@ -376,11 +395,29 @@ namespace RedBadgeFinal.Data.Migrations
 
                     b.HasOne("RedBadgeFinal.Data.Data.UserEntity", "UserEntity")
                         .WithMany("ScheduledEvents")
-                        .HasForeignKey("UserEntityId");
+                        .HasForeignKey("UserEntityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("EventEntity");
 
                     b.Navigation("UserEntity");
+                });
+
+            modelBuilder.Entity("RedBadgeFinal.Data.Data.EventEntity", b =>
+                {
+                    b.HasOne("RedBadgeFinal.Data.Data.Blog", "Blog")
+                        .WithMany("eventEntities")
+                        .HasForeignKey("BlogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Blog");
+                });
+
+            modelBuilder.Entity("RedBadgeFinal.Data.Data.Blog", b =>
+                {
+                    b.Navigation("eventEntities");
                 });
 
             modelBuilder.Entity("RedBadgeFinal.Data.Data.EventEntity", b =>

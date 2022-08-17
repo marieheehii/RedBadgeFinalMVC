@@ -10,7 +10,7 @@ namespace RedBadgeFinal.Data.Data
     public class Event_User
     {
         public int Id { get; set; }
-        public string UserEntityId { get; set; }
+        public int UserEntityId { get; set; }
         [ForeignKey(nameof(UserEntityId))]
         public UserEntity UserEntity { get; set; }
         public int EventEntityId { get; set; }

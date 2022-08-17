@@ -8,5 +8,8 @@ namespace RedBadgeFinal.Models.Models.EventEntity
 {
     public class EventListItem
     {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        
     }
 }
