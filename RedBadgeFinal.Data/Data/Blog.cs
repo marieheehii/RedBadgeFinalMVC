@@ -15,6 +15,6 @@ namespace RedBadgeFinal.Data.Data
         public int UserEntityId { get; set; }
         [ForeignKey (nameof(UserEntityId))]
         public UserEntity UserEntity { get; set; }
-        public List<EventEntity> eventEntities { get; set; } = new List<EventEntity>();
+        public List<EventEntity> EventEntities { get; set; } = new List<EventEntity>();
     }
 }

@@ -9,6 +9,7 @@ namespace RedBadgeFinal.Models.Models.Blog
 {
     public class BlogEdit
     {
+        public int Id { get; set; }
         [Required]
         [MaxLength(30, ErrorMessage = "Sorry, Your Title Cannot Exceed 20 Characters")]
         public string Title { get; set; }

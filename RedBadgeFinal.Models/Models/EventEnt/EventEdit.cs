@@ -9,6 +9,7 @@ namespace RedBadgeFinal.Models.Models.EventEntity
 {
     public class EventEdit
     {
+        public int Id { get; set; }
         [Required]
         [MaxLength(100, ErrorMessage = "Sorry, Your Title Cannot Exceed 20 Characters")]
         public string Title { get; set; }
