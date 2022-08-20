@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace RedBadgeFinal.Models.Models.Event_User
 {
-    internal class EditUserEvents
+    public class UserEventDetails
     {
+
     }
 }

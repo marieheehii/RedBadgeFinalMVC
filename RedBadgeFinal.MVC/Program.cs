@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RedBadgeFinal.MVC.Data;
+using RedBadgeFinal.Services.BlogServices;
+using RedBadgeFinal.Services.EventEntityServices;
+using RedBadgeFinal.Services.UserEntityServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +16,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IBlogService, BlogService>();
+builder.Services.AddScoped<IEventEntityService, EventEntityService>();
+builder.Services.AddScoped<IUserEntityService, UserEntityService>();
 
 var app = builder.Build();
 
