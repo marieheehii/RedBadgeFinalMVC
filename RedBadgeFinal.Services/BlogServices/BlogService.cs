@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RedBadgeFinal.Data.Data;
-using RedBadgeFinal.Models.Models.Blog;
+using RedBadgeFinal.Models.Models.BlogModel;
 using RedBadgeFinal.MVC.Data;
 using System;
 using System.Collections.Generic;

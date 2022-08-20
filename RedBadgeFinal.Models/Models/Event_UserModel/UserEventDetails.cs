@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedBadgeFinal.Models.Models.Event_User
+namespace RedBadgeFinal.Models.Models.Event_UserModel
 {
     public class UserEventDetails
     {

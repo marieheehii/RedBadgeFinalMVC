@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedBadgeFinal.Models.Models.Blog
+namespace RedBadgeFinal.Models.Models.EventEntityModel
 {
-    public class BlogListItem
+    public class EventListItem
     {
+        public int Id { get; set; }
         public string Title { get; set; }
+        
     }
 }

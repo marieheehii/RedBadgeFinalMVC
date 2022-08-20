@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedBadgeFinal.Models.Models.EventEntity
+namespace RedBadgeFinal.Models.Models.EventEntityModel
 {
     public class EventCreate
     {

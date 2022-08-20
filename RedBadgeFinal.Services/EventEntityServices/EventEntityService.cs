@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RedBadgeFinal.Data.Data;
-using RedBadgeFinal.Models.Models.EventEntity;
+using RedBadgeFinal.Models.Models.EventEntityModel;
 using RedBadgeFinal.MVC.Data;
 using System;
 using System.Collections.Generic;

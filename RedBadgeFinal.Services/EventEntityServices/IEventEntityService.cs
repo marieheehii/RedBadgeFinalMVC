@@ -1,4 +1,4 @@
-﻿using RedBadgeFinal.Models.Models.EventEntity;
+﻿using RedBadgeFinal.Models.Models.EventEntityModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,4 +16,4 @@ namespace RedBadgeFinal.Services.EventEntityServices
         Task<bool> DeleteEventEntity(int id);
     }
 }
-}
+

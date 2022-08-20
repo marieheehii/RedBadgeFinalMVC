@@ -1,4 +1,4 @@
-﻿using RedBadgeFinal.Models.Models.Blog;
+﻿using RedBadgeFinal.Models.Models.BlogModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
