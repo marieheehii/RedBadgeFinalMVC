@@ -9,6 +9,7 @@ namespace RedBadgeFinal.Models.Models.BlogModel
 {
     public class BlogListItem
     {
+        public int Id { get; set; }
         public string Title { get; set; }
     }
 }

@@ -214,31 +214,7 @@ namespace RedBadgeFinal.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ScheduledEvents",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserEntityId = table.Column<int>(type: "int", nullable: false),
-                    EventEntityId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ScheduledEvents", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ScheduledEvents_Events_EventEntityId",
-                        column: x => x.EventEntityId,
-                        principalTable: "Events",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ScheduledEvents_UserEntity_UserEntityId",
-                        column: x => x.UserEntityId,
-                        principalTable: "UserEntity",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -288,18 +264,9 @@ namespace RedBadgeFinal.Data.Migrations
                 name: "IX_Events_BlogId",
                 table: "Events",
                 column: "BlogId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ScheduledEvents_EventEntityId",
-                table: "ScheduledEvents",
-                column: "EventEntityId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ScheduledEvents_UserEntityId",
-                table: "ScheduledEvents",
-                column: "UserEntityId");
         }
 
+        
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

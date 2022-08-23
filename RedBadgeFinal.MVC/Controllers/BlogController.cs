@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RedBadgeFinal.Models.Models.BlogModel;
 using RedBadgeFinal.Services.BlogServices;
 
 namespace RedBadgeFinal.MVC.Controllers
@@ -11,9 +12,25 @@ namespace RedBadgeFinal.MVC.Controllers
             _blogservice = blogservice;
 
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
+        {
+            var blogs = await _blogservice.GetBlogList();
+            return View(blogs);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
         {
             return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> Create(BlogCreate model)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (await _blogservice.CreateBlog(model))
+                return RedirectToAction(nameof(Index));
+            else
+                return View(model);
         }
     }
 }
