@@ -26,6 +26,7 @@ namespace RedBadgeFinal.Services.BlogServices
 
                 Title = model.Title,
                 Description = model.Description,
+                UserEntityId = model.UserEntityId,
 
             };
             _context.Blogs.Add(blog);

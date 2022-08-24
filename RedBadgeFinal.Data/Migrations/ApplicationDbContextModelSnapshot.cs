@@ -238,37 +238,19 @@ namespace RedBadgeFinal.Data.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserEntityId")
+                    b.Property<string>("UserEntityId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("UserEntityId1")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserEntityId");
+
+                    b.HasIndex("UserEntityId1");
 
                     b.ToTable("Blogs");
-                });
-
-            modelBuilder.Entity("RedBadgeFinal.Data.Data.Event_User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("EventEntityId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserEntityId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EventEntityId");
-
-                    b.HasIndex("UserEntityId");
-
-                    b.ToTable("ScheduledEvents");
                 });
 
             modelBuilder.Entity("RedBadgeFinal.Data.Data.EventEntity", b =>
@@ -376,30 +358,13 @@ namespace RedBadgeFinal.Data.Migrations
 
             modelBuilder.Entity("RedBadgeFinal.Data.Data.Blog", b =>
                 {
-                    b.HasOne("RedBadgeFinal.Data.Data.UserEntity", "UserEntity")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "UserEntity")
+                        .WithMany()
+                        .HasForeignKey("UserEntityId");
+
+                    b.HasOne("RedBadgeFinal.Data.Data.UserEntity", null)
                         .WithMany("Blogs")
-                        .HasForeignKey("UserEntityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UserEntity");
-                });
-
-            modelBuilder.Entity("RedBadgeFinal.Data.Data.Event_User", b =>
-                {
-                    b.HasOne("RedBadgeFinal.Data.Data.EventEntity", "EventEntity")
-                        .WithMany("ScheduledEvents")
-                        .HasForeignKey("EventEntityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RedBadgeFinal.Data.Data.UserEntity", "UserEntity")
-                        .WithMany("ScheduledEvents")
-                        .HasForeignKey("UserEntityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("EventEntity");
+                        .HasForeignKey("UserEntityId1");
 
                     b.Navigation("UserEntity");
                 });
@@ -407,7 +372,7 @@ namespace RedBadgeFinal.Data.Migrations
             modelBuilder.Entity("RedBadgeFinal.Data.Data.EventEntity", b =>
                 {
                     b.HasOne("RedBadgeFinal.Data.Data.Blog", "Blog")
-                        .WithMany("eventEntities")
+                        .WithMany("EventEntities")
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -417,19 +382,12 @@ namespace RedBadgeFinal.Data.Migrations
 
             modelBuilder.Entity("RedBadgeFinal.Data.Data.Blog", b =>
                 {
-                    b.Navigation("eventEntities");
-                });
-
-            modelBuilder.Entity("RedBadgeFinal.Data.Data.EventEntity", b =>
-                {
-                    b.Navigation("ScheduledEvents");
+                    b.Navigation("EventEntities");
                 });
 
             modelBuilder.Entity("RedBadgeFinal.Data.Data.UserEntity", b =>
                 {
                     b.Navigation("Blogs");
-
-                    b.Navigation("ScheduledEvents");
                 });
 #pragma warning restore 612, 618
         }

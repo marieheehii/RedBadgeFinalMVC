@@ -15,6 +15,7 @@ namespace RedBadgeFinal.Models.Models.BlogModel
         [Required]
         [MaxLength(300, ErrorMessage = "Sorry, Your Description Cannot Exceed 300 Characters")]
         public string Description { get; set; }
+        public string UserEntityId { get; set; }
 
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RedBadgeFinal.Models.Models.BlogModel;
 using RedBadgeFinal.Services.BlogServices;
+using System.Security.Claims;
 
 namespace RedBadgeFinal.MVC.Controllers
 {
@@ -19,11 +20,33 @@ namespace RedBadgeFinal.MVC.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            if (id == null) return BadRequest();
+
+            var blog = await  _blogservice.GetBLogDetails(id);
+            if (blog == null) return NotFound();
+            return View(blog);
+
+        }
+
+        [HttpGet]
         public IActionResult Create()
         {
+            if(User.Identity.IsAuthenticated)
+            {
+                BlogCreate model = new BlogCreate();
+                var claimsIdentity = (ClaimsIdentity)User.Identity;
+                var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+                model.UserEntityId = claim;
+
+                return View(model);
+            }
+
             return View();
         }
-        [HttpGet]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(BlogCreate model)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
