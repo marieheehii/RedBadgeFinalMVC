@@ -42,7 +42,7 @@ namespace RedBadgeFinal.MVC.Controllers
 
                 return View(model);
             }
-
+            //make error page 
             return View();
         }
         [HttpPost]
@@ -54,6 +54,44 @@ namespace RedBadgeFinal.MVC.Controllers
                 return RedirectToAction(nameof(Index));
             else
                 return View(model);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit (int? id)
+        {
+            if (id == null) return BadRequest();
+
+            var blog = await _blogservice.GetBLogDetails(id.Value);
+            if (blog == null) return NotFound();
+
+            return View(blog);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, BlogEdit model)
+        {
+            if (id != model.Id || !ModelState.IsValid) return BadRequest(ModelState);
+
+            if (await _blogservice.UpdateBlog(id, model))
+                return RedirectToAction(nameof(Index));
+            else
+                return View(model);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null) return BadRequest();
+            var blog = await _blogservice.GetBLogDetails(id.Value);
+            if (blog == null) return NotFound();
+            return View(blog);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (await _blogservice.DeleteBlog(id))
+                return RedirectToAction(nameof(Index));
+            else
+                return UnprocessableEntity();
         }
     }
 }
