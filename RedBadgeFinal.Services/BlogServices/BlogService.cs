@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RedBadgeFinal.Data.Data;
 using RedBadgeFinal.Models.Models.BlogModel;
+using RedBadgeFinal.Models.Models.EventEntityModel;
 using RedBadgeFinal.MVC.Data;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace RedBadgeFinal.Services.BlogServices
 
         public async Task<bool> CreateBlog(BlogCreate model)
         {
+            if (model == null) return false;
             var blog = new Blog
             {
 
@@ -29,15 +31,16 @@ namespace RedBadgeFinal.Services.BlogServices
                 UserEntityId = model.UserEntityId,
 
             };
-            _context.Blogs.Add(blog);
-            var numberOfChanges = await _context.SaveChangesAsync();
-            return numberOfChanges == 1;
+            await _context.Blogs.AddAsync(blog);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
         public async Task<IEnumerable<BlogListItem>> GetBlogList()
         {
             var blogs = await _context.Blogs.Select(entity => new BlogListItem
             {
+                Id = entity.Id,
                 Title = entity.Title,
             })
             .ToListAsync();
@@ -81,17 +84,25 @@ namespace RedBadgeFinal.Services.BlogServices
 
         public async Task<BlogDetails> GetBLogDetails(int id)
         {
-            var blog = await _context.Blogs.FirstOrDefaultAsync(entity => entity.Id == id);
+            var blog = await _context.Blogs.Include(e => e.EventEntities).SingleOrDefaultAsync(x => x.Id == id);
             if (blog is null)
             {
                 return null;
             }
+
+            var evententities = await _context.Events.Where(e => e.BlogId == blog.Id).Select(e => new EventListItem
+            {
+                Id = e.Id,
+                Title = e.Title,
+            }).ToListAsync();
+            if (evententities is null) return null;
+
             return new BlogDetails
             {
                 Id = blog.Id,
                 Title = blog.Title,
                 Description = blog.Description,
-                EventEntities = blog.EventEntities,
+                EventEntities = blog.EventEntities
             };
         }
     }

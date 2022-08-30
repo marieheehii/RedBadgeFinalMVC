@@ -20,11 +20,11 @@ namespace RedBadgeFinal.MVC.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return BadRequest();
 
-            var blog = await  _blogservice.GetBLogDetails(id);
+            var blog = await  _blogservice.GetBLogDetails(id.Value);
             if (blog == null) return NotFound();
             return View(blog);
 
@@ -53,10 +53,12 @@ namespace RedBadgeFinal.MVC.Controllers
             if (await _blogservice.CreateBlog(model))
                 return RedirectToAction(nameof(Index));
             else
+                ModelState.Remove("Id");
                 return View(model);
+                
         }
         [HttpGet]
-        public async Task<IActionResult> Edit (int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return BadRequest();
 
