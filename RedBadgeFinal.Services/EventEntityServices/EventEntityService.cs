@@ -24,6 +24,7 @@ namespace RedBadgeFinal.Services.EventEntityServices
             {
                 Title = model.Title,
                 Description = model.Description,
+                BlogId = model.BlogId,
             };
             _context.Events.Add(evententity);
             var numberofchanges = await _context.SaveChangesAsync();
@@ -68,6 +69,7 @@ namespace RedBadgeFinal.Services.EventEntityServices
         {
             var evententities = await _context.Events.Select(entity => new EventListItem
             {
+                Id = entity.Id,
                 Title = entity.Title,
 
             })

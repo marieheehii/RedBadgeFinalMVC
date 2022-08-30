@@ -16,5 +16,7 @@ namespace RedBadgeFinal.Models.Models.EventEntityModel
         [Required]
         [MaxLength(1000, ErrorMessage = "Sorry, Your Description Cannot Exceed 1000 Characters")]
         public string Description { get; set; }
+
+        public int BlogId { get; set; }
     }
 }
