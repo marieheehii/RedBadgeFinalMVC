@@ -43,7 +43,7 @@ namespace RedBadgeFinal.MVC.Controllers
                 return View(model);
             }
             //make error page 
-            return View();
+            return View("NullIdError");
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

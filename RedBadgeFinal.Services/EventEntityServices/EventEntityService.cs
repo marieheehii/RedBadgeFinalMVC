@@ -24,6 +24,7 @@ namespace RedBadgeFinal.Services.EventEntityServices
             {
                 Title = model.Title,
                 Description = model.Description,
+                Image = model.Image,
                 BlogId = model.BlogId,
             };
             _context.Events.Add(evententity);
@@ -57,6 +58,7 @@ namespace RedBadgeFinal.Services.EventEntityServices
             {
                 Title = evententity.Title,
                 Description = evententity.Description,
+                Image = evententity.Image,
                 Likes = evententity.Likes,
                 Participants = evententity.Participants,
                 BlogId = evententity.BlogId,
@@ -90,6 +92,8 @@ namespace RedBadgeFinal.Services.EventEntityServices
 
                 eventsinDB.Title = model.Title;
                 eventsinDB.Description = model.Description;
+                eventsinDB.Image = model.Image;
+
 
                 await _context.SaveChangesAsync();
                 return true;

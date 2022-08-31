@@ -267,10 +267,10 @@ namespace RedBadgeFinal.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Likes")
-                        .HasColumnType("int");
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Participants")
+                    b.Property<int>("Likes")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -281,6 +281,33 @@ namespace RedBadgeFinal.Data.Migrations
                     b.HasIndex("BlogId");
 
                     b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("RedBadgeFinal.Data.Data.Participants", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("EventEntityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventEntityId");
+
+                    b.ToTable("Participants");
                 });
 
             modelBuilder.Entity("RedBadgeFinal.Data.Data.UserEntity", b =>
@@ -380,9 +407,25 @@ namespace RedBadgeFinal.Data.Migrations
                     b.Navigation("Blog");
                 });
 
+            modelBuilder.Entity("RedBadgeFinal.Data.Data.Participants", b =>
+                {
+                    b.HasOne("RedBadgeFinal.Data.Data.EventEntity", "Event")
+                        .WithMany("Participants")
+                        .HasForeignKey("EventEntityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Event");
+                });
+
             modelBuilder.Entity("RedBadgeFinal.Data.Data.Blog", b =>
                 {
                     b.Navigation("EventEntities");
+                });
+
+            modelBuilder.Entity("RedBadgeFinal.Data.Data.EventEntity", b =>
+                {
+                    b.Navigation("Participants");
                 });
 
             modelBuilder.Entity("RedBadgeFinal.Data.Data.UserEntity", b =>

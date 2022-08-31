@@ -31,12 +31,21 @@
     </dl>
 </div>
 <div>
-    <ul>
+    <h1>Events for @Model.Title </h1>
+    <div class="d-flex flex-row flex-wrap">
         @foreach (var evententity in Model.EventEntities)
         {
-            <li>@evententity.Title - @evententity.Description</li>
+           <div class="item-container">
+               <div class="post">
+                   <h4>@evententity.Title</h4>
+                   <p>@evententity.Description</p>
+               </div>
+               <div>
+                   @evententity.Likes - @evententity.Participants
+               </div>
+           </div>
         }
-    </ul>
+    </div>
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new {id = Model.Id}) |

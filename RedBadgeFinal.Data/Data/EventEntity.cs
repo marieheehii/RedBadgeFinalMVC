@@ -12,11 +12,16 @@ namespace RedBadgeFinal.Data.Data
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string Image { get; set; }
         public int Likes { get; set; }
-        public int Participants { get; set; }
         public int BlogId { get; set; }
 
         [ForeignKey(nameof(BlogId))]
         public Blog Blog { get; set; }
+
+        public List<Participants> Participants { get; set; } = new List<Participants>();
+
+       
+
     }
 }

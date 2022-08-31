@@ -13,5 +13,7 @@ namespace RedBadgeFinal.MVC.Data
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<UserEntity> UserEntity { get; set; }
         public DbSet<EventEntity> Events { get; set; }
+
+        public DbSet<Participants> Participants { get; set; }
     }
 }
