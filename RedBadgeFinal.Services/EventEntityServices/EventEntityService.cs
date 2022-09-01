@@ -15,22 +15,20 @@ namespace RedBadgeFinal.Services.EventEntityServices
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment WebHostEnvironment;
-
-        public EventEntityService(ApplicationDbContext context, IWebHostEnvironment webHostEnviornment)
+        public EventEntityService(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
-            webHostEnviornment = WebHostEnvironment;
-
+            WebHostEnvironment = webHostEnvironment;
         }
         public async Task<bool> CreateEventEntity(EventCreate model)
         {
-            string stringFileName = UploadImage(model);
+            string stringFile = UploadImage(model);
 
             var evententity = new EventEntity
             {
                 Title = model.Title,
                 Description = model.Description,
-                Image = stringFileName,
+                Image = stringFile,
                 BlogId = model.BlogId,
             };
             _context.Events.Add(evententity);
@@ -55,7 +53,7 @@ namespace RedBadgeFinal.Services.EventEntityServices
 
         public async Task<EventDetail> GetEventEntityDetails(int id)
         {
-            string stringFileName = UploadImage();
+
             var evententity = await _context.Events.FirstOrDefaultAsync(CreateEventEntity => CreateEventEntity.Id == id);
             if(evententity is null)
             {
@@ -65,7 +63,7 @@ namespace RedBadgeFinal.Services.EventEntityServices
             {
                 Title = evententity.Title,
                 Description = evententity.Description,
-                Image = stringFileName,
+                Image = evententity.Image,
                 Likes = evententity.Likes,
                 Participants = evententity.Participants,
                 BlogId = evententity.BlogId,
@@ -113,7 +111,7 @@ namespace RedBadgeFinal.Services.EventEntityServices
             if (model.Image!=null)
             {
                 string uploadDir = Path.Combine(WebHostEnvironment.WebRootPath, "Images");
-                fileName = Guid.NewGuid().ToString() + "-" + model.Image.FileName;
+                fileName = Guid.NewGuid().ToString() + "_" + model.Image.FileName;
                 string filePath = Path.Combine(uploadDir, fileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {

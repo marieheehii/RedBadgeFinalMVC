@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using RedBadgeFinal.MVC.Data;
 using RedBadgeFinal.Services.BlogServices;
 using RedBadgeFinal.Services.EventEntityServices;
+using RedBadgeFinal.Services.ParticipantServices;
 using RedBadgeFinal.Services.UserEntityServices;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IBlogService, BlogService>();
 builder.Services.AddScoped<IEventEntityService, EventEntityService>();
 builder.Services.AddScoped<IUserEntityService, UserEntityService>();
+builder.Services.AddScoped<IParticipationService, ParticipantService>();
 
 var app = builder.Build();
 

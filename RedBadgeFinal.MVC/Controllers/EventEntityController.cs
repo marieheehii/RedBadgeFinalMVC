@@ -51,10 +51,10 @@ namespace RedBadgeFinal.MVC.Controllers
 
             var evententity = await _evententityservice.GetEventEntityDetails(id.Value);
             if (evententity == null) return NotFound();
-
             return View(evententity);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, EventEdit model)
         {
             if (id != model.Id || !ModelState.IsValid) return BadRequest(ModelState);
