@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using RedBadgeFinal.Data.Data;
 using RedBadgeFinal.Models.Models.EventEntityModel;
 using RedBadgeFinal.MVC.Data;
@@ -13,18 +14,23 @@ namespace RedBadgeFinal.Services.EventEntityServices
     public class EventEntityService : IEventEntityService
     {
         private readonly ApplicationDbContext _context;
-        public EventEntityService(ApplicationDbContext context)
+        private readonly IWebHostEnvironment WebHostEnvironment;
+
+        public EventEntityService(ApplicationDbContext context, IWebHostEnvironment webHostEnviornment)
         {
             _context = context;
-        }
+            webHostEnviornment = WebHostEnvironment;
 
+        }
         public async Task<bool> CreateEventEntity(EventCreate model)
         {
+            string stringFileName = UploadImage(model);
+
             var evententity = new EventEntity
             {
                 Title = model.Title,
                 Description = model.Description,
-                Image = model.Image,
+                Image = stringFileName,
                 BlogId = model.BlogId,
             };
             _context.Events.Add(evententity);
@@ -49,6 +55,7 @@ namespace RedBadgeFinal.Services.EventEntityServices
 
         public async Task<EventDetail> GetEventEntityDetails(int id)
         {
+            string stringFileName = UploadImage();
             var evententity = await _context.Events.FirstOrDefaultAsync(CreateEventEntity => CreateEventEntity.Id == id);
             if(evententity is null)
             {
@@ -58,7 +65,7 @@ namespace RedBadgeFinal.Services.EventEntityServices
             {
                 Title = evententity.Title,
                 Description = evententity.Description,
-                Image = evententity.Image,
+                Image = stringFileName,
                 Likes = evententity.Likes,
                 Participants = evententity.Participants,
                 BlogId = evententity.BlogId,
@@ -98,6 +105,22 @@ namespace RedBadgeFinal.Services.EventEntityServices
                 await _context.SaveChangesAsync();
                 return true;
             }
+        }
+
+        public string UploadImage(EventCreate model)
+        {
+            string fileName = null;
+            if (model.Image!=null)
+            {
+                string uploadDir = Path.Combine(WebHostEnvironment.WebRootPath, "Images");
+                fileName = Guid.NewGuid().ToString() + "-" + model.Image.FileName;
+                string filePath = Path.Combine(uploadDir, fileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.Image.CopyTo(fileStream);
+                }
+            }
+            return fileName;
         }
     }
 }
