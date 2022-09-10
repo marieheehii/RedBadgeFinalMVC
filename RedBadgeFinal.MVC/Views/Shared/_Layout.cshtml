@@ -12,7 +12,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-transperent border-bottom box-shadow mb-3">
-            <div id="navbar1" class="navbar-collapse collapse d-flex flex-row justify-content-center">
+            <div id="navbar1" class="navbar-collapse collapse d-flex flex-row justify-content-center border-bottom">
             <div class="p-2">
                     <ul class="navbar-nav">
                         <li class="nav-item">
@@ -32,17 +32,17 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li>
+                         <partial name="_LoginPartial" />
+                        </li>
                     </ul
             </div>
            <div class="p-2">
-               <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RedBadgeFinal.MVC</a>
+               <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HOME</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-           </div class="d-flex justify-content-end">
-             <partial name="_LoginPartial" />
-           </div>
         </nav>
     </header>
     <div class="container">

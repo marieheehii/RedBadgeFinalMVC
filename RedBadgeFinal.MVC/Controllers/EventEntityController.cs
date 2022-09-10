@@ -19,11 +19,11 @@ namespace RedBadgeFinal.MVC.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return BadRequest();
 
-            var evententity = await _evententityservice.GetEventEntityDetails(id);
+            var evententity = await _evententityservice.GetEventEntityDetails(id.Value);
             if (evententity == null) return NotFound();
             return View(evententity);
 

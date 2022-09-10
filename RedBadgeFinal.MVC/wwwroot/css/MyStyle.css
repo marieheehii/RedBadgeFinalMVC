@@ -1,4 +1,7 @@
 ﻿/*General*/
+a{
+    color:black;
+}
 .Login{
     text-align: center;
 }
@@ -14,7 +17,7 @@ p{
 }
 /*HomePage*/
 .homebody {
-    background-color: white;
+    background-color: rgb(0, 0, 0, 0.10);
     padding: 10%;
     padding-bottom: 100%;
     margin-right: -100px;
@@ -23,21 +26,21 @@ p{
 }
 .pageheader {
     background-color: white;
-    padding-top: 100%;
     padding: 10%;
+    padding-bottom: 0px;
     margin-right: -100px;
     margin-left: -100px;
 }
 /*BlogsIndex*/
 table {
-    background-color: rgb(0, 0, 0, 0.50);
+    background-color: rgb(0, 0, 0, 0.10);
     height: 300px;
     border: solid;
 }
 /*BlogsCreate*/
 /*BlogsDetail*/
 .eventDetails {
-    background-color: rgb(0, 0, 0, 0.50);
+    background-color: rgb(0, 0, 0, 0.10);
     margin: auto;
     width: 100%;
     margin-bottom: 10px;
@@ -55,7 +58,7 @@ table {
 /*EventsDetail*/
 .DetailsEvent {
     border: solid;
-    background-color: rgb(0, 0, 0, 0.20);
+    background-color: rgb(0, 0, 0, 0.10);
 }
 /*EventsDelete*/
 /*ParticipantsIndex*/

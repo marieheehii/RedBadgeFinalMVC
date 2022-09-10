@@ -67,7 +67,8 @@ namespace RedBadgeFinal.Services.ParticipantServices
             var participants = await _context.Participants.Select(entity => new ListParticipants
             {
                 Id = entity.Id,
-                FirstName = entity.FirstName
+                FirstName = entity.FirstName,
+                EventEntityId = entity.EventEntityId
             }).ToListAsync();
             return participants;
         }

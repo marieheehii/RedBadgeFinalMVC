@@ -10,5 +10,7 @@ namespace RedBadgeFinal.Models.Models.ParticipantsModel
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
+
+        public int EventEntityId { get; set; }
     }
 }

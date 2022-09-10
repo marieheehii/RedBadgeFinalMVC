@@ -43,11 +43,8 @@
                </div>
                <div>
                    <p> @evententity.Location</p>
-                   @foreach(var participant in evententity.Participants)
-                    {
-                       <p>@participant.FirstName</p>
-                    }
-                </div>
+                   <a class="nav-link text-dark" asp-area="" asp-controller="Participants" asp-action="Index">Participants>Participants for Event Number @evententity.Id</a>
+               </div>
            </div>
         }
     </div>
