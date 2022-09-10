@@ -1,0 +1,17 @@
+C:\144_immersions\RedBadgeFinal.MVC\RedBadgeFinal.Services\bin\Release\net6.0\RedBadgeFinal.Services.deps.json
+C:\144_immersions\RedBadgeFinal.MVC\RedBadgeFinal.Services\bin\Release\net6.0\RedBadgeFinal.Services.dll
+C:\144_immersions\RedBadgeFinal.MVC\RedBadgeFinal.Services\bin\Release\net6.0\RedBadgeFinal.Services.pdb
+C:\144_immersions\RedBadgeFinal.MVC\RedBadgeFinal.Services\bin\Release\net6.0\RedBadgeFinal.Data.dll
+C:\144_immersions\RedBadgeFinal.MVC\RedBadgeFinal.Services\bin\Release\net6.0\RedBadgeFinal.Models.dll
+C:\144_immersions\RedBadgeFinal.MVC\RedBadgeFinal.Services\bin\Release\net6.0\RedBadgeFinal.Data.pdb
+C:\144_immersions\RedBadgeFinal.MVC\RedBadgeFinal.Services\bin\Release\net6.0\RedBadgeFinal.Models.pdb
+C:\144_immersions\RedBadgeFinal.MVC\RedBadgeFinal.Services\obj\Release\net6.0\RedBadgeFinal.Services.csproj.AssemblyReference.cache
+C:\144_immersions\RedBadgeFinal.MVC\RedBadgeFinal.Services\obj\Release\net6.0\RedBadgeFinal.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\144_immersions\RedBadgeFinal.MVC\RedBadgeFinal.Services\obj\Release\net6.0\RedBadgeFinal.Services.AssemblyInfoInputs.cache
+C:\144_immersions\RedBadgeFinal.MVC\RedBadgeFinal.Services\obj\Release\net6.0\RedBadgeFinal.Services.AssemblyInfo.cs
+C:\144_immersions\RedBadgeFinal.MVC\RedBadgeFinal.Services\obj\Release\net6.0\RedBadgeFinal.Services.csproj.CoreCompileInputs.cache
+C:\144_immersions\RedBadgeFinal.MVC\RedBadgeFinal.Services\obj\Release\net6.0\RedBadgeFinal.Services.csproj.CopyComplete
+C:\144_immersions\RedBadgeFinal.MVC\RedBadgeFinal.Services\obj\Release\net6.0\RedBadgeFinal.Services.dll
+C:\144_immersions\RedBadgeFinal.MVC\RedBadgeFinal.Services\obj\Release\net6.0\refint\RedBadgeFinal.Services.dll
+C:\144_immersions\RedBadgeFinal.MVC\RedBadgeFinal.Services\obj\Release\net6.0\RedBadgeFinal.Services.pdb
+C:\144_immersions\RedBadgeFinal.MVC\RedBadgeFinal.Services\obj\Release\net6.0\ref\RedBadgeFinal.Services.dll

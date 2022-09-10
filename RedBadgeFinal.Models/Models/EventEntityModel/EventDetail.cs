@@ -14,7 +14,7 @@ namespace RedBadgeFinal.Models.Models.EventEntityModel
         public string Title { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
-        public int Likes { get; set; }
+        public string Location { get; set; }
         public List<Participants> Participants { get; set; } = new List<Participants>();
         public int BlogId { get; set; }
     }

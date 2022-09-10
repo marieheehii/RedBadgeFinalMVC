@@ -81,7 +81,7 @@ namespace RedBadgeFinal.Services.ParticipantServices
             else
             {
                 var eventsinDB = await _context.Participants.FindAsync(model.Id);
-                if (eventsinDB != null) return false;
+                if (eventsinDB == null) return false;
 
                 eventsinDB.FirstName = model.FirstName;
                 eventsinDB.LastName = model.LastName;

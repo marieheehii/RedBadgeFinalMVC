@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GbjXwdbujWdWbgLRuWagj0by5KFEau5czmrHR72Hzsg=",
+  "Hash": "+jKwPSDUAA5ty3zLo/NE4WTmiExjojNV84A8eFgh7yQ=",
   "Source": "RedBadgeFinal.MVC",
   "BasePath": "_content/RedBadgeFinal.MVC",
   "Mode": "Default",
@@ -49,6 +49,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\144_immersions\\RedBadgeFinal.MVC\\RedBadgeFinal.MVC\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\RedBadgeFinal.MVC.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\144_immersions\\RedBadgeFinal.MVC\\RedBadgeFinal.MVC\\wwwroot\\css\\Custom.scss",
+      "SourceId": "RedBadgeFinal.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\144_immersions\\RedBadgeFinal.MVC\\RedBadgeFinal.MVC\\wwwroot\\",
+      "BasePath": "_content/RedBadgeFinal.MVC",
+      "RelativePath": "css/Custom.scss",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Custom.scss"
+    },
+    {
+      "Identity": "C:\\144_immersions\\RedBadgeFinal.MVC\\RedBadgeFinal.MVC\\wwwroot\\css\\MyStyle.css",
+      "SourceId": "RedBadgeFinal.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\144_immersions\\RedBadgeFinal.MVC\\RedBadgeFinal.MVC\\wwwroot\\",
+      "BasePath": "_content/RedBadgeFinal.MVC",
+      "RelativePath": "css/MyStyle.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\MyStyle.css"
     },
     {
       "Identity": "C:\\144_immersions\\RedBadgeFinal.MVC\\RedBadgeFinal.MVC\\wwwroot\\css\\site.css",

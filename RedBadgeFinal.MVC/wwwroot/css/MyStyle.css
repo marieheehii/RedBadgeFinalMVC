@@ -1,0 +1,65 @@
+﻿/*General*/
+.Login{
+    text-align: center;
+}
+body{
+    background-color: white;
+    text-align:center;
+}
+p{
+    text-align:left;
+}
+#d-flex{
+    margin-right:20px;
+}
+/*HomePage*/
+.homebody {
+    background-color: white;
+    padding: 10%;
+    padding-bottom: 100%;
+    margin-right: -100px;
+    margin-left: -100px;
+    text-align: center;
+}
+.pageheader {
+    background-color: white;
+    padding-top: 100%;
+    padding: 10%;
+    margin-right: -100px;
+    margin-left: -100px;
+}
+/*BlogsIndex*/
+table {
+    background-color: rgb(0, 0, 0, 0.50);
+    height: 300px;
+    border: solid;
+}
+/*BlogsCreate*/
+/*BlogsDetail*/
+.eventDetails {
+    background-color: rgb(0, 0, 0, 0.50);
+    margin: auto;
+    width: 100%;
+    margin-bottom: 10px;
+    border: solid;
+}
+.post {
+    background-color: rgb(0, 0, 0, 0.20);
+}
+/*BlogsDelete*/
+/*EventsIndex*/
+#indexdetail{
+    background-color: cornflowerblue;
+}
+/*EventsCreate*/
+/*EventsDetail*/
+.DetailsEvent {
+    border: solid;
+    background-color: rgb(0, 0, 0, 0.20);
+}
+/*EventsDelete*/
+/*ParticipantsIndex*/
+/*ParticipantsCreate*/
+/*ParticipantsDetail*/
+/*ParticipantsDelete*/
+

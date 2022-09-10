@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using RedBadgeFinal.Data.Data;
 using RedBadgeFinal.Models.Models.EventEntityModel;
+using RedBadgeFinal.Models.Models.ParticipantsModel;
 using RedBadgeFinal.MVC.Data;
 using System;
 using System.Collections.Generic;
@@ -14,21 +15,22 @@ namespace RedBadgeFinal.Services.EventEntityServices
     public class EventEntityService : IEventEntityService
     {
         private readonly ApplicationDbContext _context;
-        private readonly IWebHostEnvironment WebHostEnvironment;
-        public EventEntityService(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
+        
+        public EventEntityService(ApplicationDbContext context)
         {
             _context = context;
-            WebHostEnvironment = webHostEnvironment;
+            
         }
         public async Task<bool> CreateEventEntity(EventCreate model)
         {
-            string stringFile = UploadImage(model);
+            
 
             var evententity = new EventEntity
             {
                 Title = model.Title,
                 Description = model.Description,
-                Image = stringFile,
+                Image = model.Image,
+                Location = model.Location,
                 BlogId = model.BlogId,
             };
             _context.Events.Add(evententity);
@@ -54,17 +56,25 @@ namespace RedBadgeFinal.Services.EventEntityServices
         public async Task<EventDetail> GetEventEntityDetails(int id)
         {
 
-            var evententity = await _context.Events.FirstOrDefaultAsync(CreateEventEntity => CreateEventEntity.Id == id);
-            if(evententity is null)
+            var evententity = await _context.Events.Include(e => e.Participants).SingleOrDefaultAsync(x => x.Id == id);
+            if (evententity is null)
             {
                 return null;
             }
+            var participants = await _context.Participants.Where(e => e.EventEntityId == evententity.Id).Select(e => new ListParticipants
+            {
+                Id = e.Id,
+                FirstName = e.FirstName,
+            }
+            ).ToListAsync();
+            if (participants is null) return null;
             return new EventDetail
             {
+                Id = evententity.Id,
                 Title = evententity.Title,
                 Description = evententity.Description,
                 Image = evententity.Image,
-                Likes = evententity.Likes,
+                Location = evententity.Location,
                 Participants = evententity.Participants,
                 BlogId = evententity.BlogId,
 
@@ -93,7 +103,7 @@ namespace RedBadgeFinal.Services.EventEntityServices
             else
             {
                 var eventsinDB = await _context.Events.FindAsync(model.Id);
-                if (eventsinDB != null) return false;
+                if (eventsinDB == null) return false;
 
                 eventsinDB.Title = model.Title;
                 eventsinDB.Description = model.Description;
@@ -103,22 +113,6 @@ namespace RedBadgeFinal.Services.EventEntityServices
                 await _context.SaveChangesAsync();
                 return true;
             }
-        }
-
-        public string UploadImage(EventCreate model)
-        {
-            string fileName = null;
-            if (model.Image!=null)
-            {
-                string uploadDir = Path.Combine(WebHostEnvironment.WebRootPath, "Images");
-                fileName = Guid.NewGuid().ToString() + "_" + model.Image.FileName;
-                string filePath = Path.Combine(uploadDir, fileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    model.Image.CopyTo(fileStream);
-                }
-            }
-            return fileName;
         }
     }
 }

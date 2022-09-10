@@ -19,9 +19,9 @@ namespace RedBadgeFinal.Models.Models.EventEntityModel
         public string Description { get; set; }
 
         [Required]
-        [Display(Name = "Image")]
-        public IFormFile Image { get; set; }
-
+        [Display(Name = "ImageUrl")]
+        public string Image { get; set; }
+        public string Location { get; set; }
         public int BlogId { get; set; }
     }
 }

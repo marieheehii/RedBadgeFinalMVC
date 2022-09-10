@@ -56,7 +56,7 @@ namespace RedBadgeFinal.Services.BlogServices
             else
             {
                 var blogsInDB = await _context.Blogs.FindAsync(model.Id);
-                if (blogsInDB != null) return false;
+                if (blogsInDB == null) return false;
 
                 blogsInDB.Title = model.Title;
                 blogsInDB.Description = model.Description;

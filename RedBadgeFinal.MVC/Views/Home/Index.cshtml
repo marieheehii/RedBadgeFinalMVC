@@ -2,7 +2,21 @@
     ViewData["Title"] = "Home Page";
 }
 
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="pageheader">
+        <h1 class="display-4">Welcome</h1>
+    </div>
+    <div id="explorer"class="hover-zoom">
+        <div class="homebody">
+            <p>Not sure what to do? You can explore events</p>
+            <button type="button" class="btn btn-secondary"><a asp-area="" asp-controller="EventEntity" asp-action="Index">Events
+                            </a></button>
+        </div>
+    </div>
 </div>
+<div class="">
+    
+</div>
+
+

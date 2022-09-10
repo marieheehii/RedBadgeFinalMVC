@@ -13,7 +13,7 @@ namespace RedBadgeFinal.Data.Data
         public string Title { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
-        public int Likes { get; set; }
+        public string Location { get; set; }
         public int BlogId { get; set; }
 
         [ForeignKey(nameof(BlogId))]

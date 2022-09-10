@@ -4,10 +4,10 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>@Model.Title</h1>
 
 <div>
-    <h4>BlogDetails</h4>
+    <h4>@Model.Description</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -35,14 +35,19 @@
     <div class="d-flex flex-row flex-wrap">
         @foreach (var evententity in Model.EventEntities)
         {
-           <div class="item-container">
+           <div class="eventDetails">
                <div class="post">
                    <h4>@evententity.Title</h4>
+                   <img src="@evententity.Image" width="400px" height="400px">
                    <p>@evententity.Description</p>
                </div>
                <div>
-                   @evententity.Likes - @evententity.Participants
-               </div>
+                   <p> @evententity.Location</p>
+                   @foreach(var participant in evententity.Participants)
+                    {
+                       <p>@participant.FirstName</p>
+                    }
+                </div>
            </div>
         }
     </div>

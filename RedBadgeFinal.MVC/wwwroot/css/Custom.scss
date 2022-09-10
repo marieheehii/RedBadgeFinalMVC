@@ -1,0 +1,17 @@
+﻿// Custom.scss
+// Option B: Include parts of Bootstrap
+
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../node_modules/bootstrap/scss/functions";
+
+$primary: ;
+$danger: #ff4136;
+
+$primary: #87170c;
+$secondary: #d7611d; 
+$success: #3a5522;
+$info: #45a579;
+$warning: #bb9414
+$danger: #87170c
+$light: #f2dcc5
+$dark: #122403
